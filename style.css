@@ -1,0 +1,89 @@
+/* Global Reset */
+* {
+    text-decoration: none;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+    list-style: none;
+}
+
+/* Body Styles */
+body {
+    min-height: 100%;
+    background: linear-gradient(70deg, #34e89e, #0f3443);
+    background-attachment: fixed;
+    color: white;
+    padding-bottom: 100px;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex; /* Flex container */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
+    padding: 10px 20px;
+}
+
+.projName {
+    font-size: 40px;
+    font-weight: bold;
+    color: white;
+    margin-right: 10px; /* Add space between text and logo */
+}
+
+nav img {
+    height: 50px;
+}
+
+/* Main Section */
+main {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Progress Circle Styles */
+.progress-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+}
+
+.progress-circle {
+    transform: rotate(-90deg); /* Start the circle from the top */
+}
+
+.progress-bg {
+    stroke-dasharray: 283; /* 2 * Math.PI * radius */
+    stroke-dashoffset: 0;
+    stroke-width: 10px;
+    stroke: #d3d3d3; /* Light gray background */
+    fill: none;
+}
+
+.progress-bar {
+    stroke-dasharray: 283; /* 2 * Math.PI * radius */
+    stroke-dashoffset: 283; /* Fully hidden initially */
+    stroke-width: 10px;
+    stroke: #4caf50; /* Solid green color */
+    fill: none;
+    transition: stroke-dashoffset 0.5s ease; /* Smooth transition */
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: #4caf50;
+}
