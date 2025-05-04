@@ -47,9 +47,55 @@ body {
     color: #333333; /* Darker text color */
 }
 
+/* Dropdown Menu */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
 .navbar-logo {
     height: 50px;
     width: auto;
+    cursor: pointer; /* Indicate interactivity */
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+    display: block; /* Always in the document flow */
+    position: absolute;
+    right: 0; /* Align dropdown to the right of the logo */
+    background-color: #ffffff; /* White background for the dropdown */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 10px 0; /* Add some padding inside */
+    z-index: 1000; /* Ensure it appears above other content */
+    min-width: 150px; /* Minimum width for the dropdown */
+    opacity: 0; /* Hidden by default */
+    transform: translateY(-20px); /* Position it above */
+    pointer-events: none; /* Prevent interaction when hidden */
+    transition: all 0.3s ease; /* Smooth animation */
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 20px;
+    color: #333333; /* Dark text color for readability */
+    text-decoration: none; /* Remove underline */
+    font-size: 16px;
+    transition: background 0.3s ease; /* Smooth hover effect */
+}
+
+.dropdown-menu a:hover {
+    background: #f6f7ff; /* Light pastel hover effect */
+}
+
+/* Show the dropdown with animation on hover */
+.dropdown:hover .dropdown-menu,
+.dropdown-menu:hover {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Slide down */
+    pointer-events: auto; /* Allow interaction when visible */
 }
 
 /* Main Section */
