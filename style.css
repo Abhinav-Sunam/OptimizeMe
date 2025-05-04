@@ -20,41 +20,67 @@ body {
 }
 
 /* Navigation Bar */
-nav {
-    margin-top: 30px;
+.navbar {
+    background: #f6f7ff; /* Light pastel background */
+    color: #333333; /* Darker text color for contrast */
+    padding: 15px;
+    width: 100%;
+    position: fixed; /* Stick to the top */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    border-radius: 0 0 15px 15px; /* Rounded bottom corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.navbar-container {
     display: flex; /* Flex container */
-    justify-content: center; /* Center items horizontally */
-    align-items: center; /* Center items vertically */
-    padding: 10px 20px;
+    justify-content: space-between; /* Space between project name and logo */
+    align-items: center; /* Vertically center items */
+    max-width: 1200px; /* Limit content width */
+    margin: 0 auto; /* Center content horizontally */
 }
 
 .projName {
-    font-size: 40px;
+    font-size: 28px;
     font-weight: bold;
-    color: white;
-    margin-right: 10px; /* Add space between text and logo */
+    color: #333333; /* Darker text color */
 }
 
-nav img {
+.navbar-logo {
     height: 50px;
+    width: auto;
 }
 
 /* Main Section */
 main {
-    margin-top: 50px;
+    margin-top: 90px; /* Add space to account for the fixed navbar */
     text-align: center;
 }
 
+/* Box Around Eco Health */
+.eco-health-box {
+    border: 2px solid white; /* White border */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Add spacing inside the box */
+    display: inline-block; /* Adjust box size to fit content */
+    margin: 20px auto; /* Center the box horizontally */
+    background: #f6f7ff; /* Pastel background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+/* Heading */
 .heading {
     font-size: 24px;
     font-weight: bold;
+    color: #333333; /* Slightly darker text for contrast */
 }
 
 /* Progress Circle Styles */
 .progress-container {
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     margin: 20px auto;
 }
 
@@ -63,17 +89,17 @@ main {
 }
 
 .progress-bg {
-    stroke-dasharray: 283; /* 2 * Math.PI * radius */
+    stroke-dasharray: 408; /* 2 * Math.PI * radius */
     stroke-dashoffset: 0;
-    stroke-width: 10px;
+    stroke-width: 15px;
     stroke: #d3d3d3; /* Light gray background */
     fill: none;
 }
 
 .progress-bar {
-    stroke-dasharray: 283; /* 2 * Math.PI * radius */
-    stroke-dashoffset: 283; /* Fully hidden initially */
-    stroke-width: 10px;
+    stroke-dasharray: 408; /* 2 * Math.PI * radius */
+    stroke-dashoffset: 408; /* Fully hidden initially */
+    stroke-width: 15px;
     stroke: #4caf50; /* Solid green color */
     fill: none;
     transition: stroke-dashoffset 0.5s ease; /* Smooth transition */
@@ -84,7 +110,7 @@ main {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
-    color: #ffffff;
+    color: #333333; /* Slightly darker text for better readability */
 }
