@@ -34,13 +34,13 @@ body {
 }
 
 .navbar-container {
-    display: flex; /* Flex container */
-    justify-content: space-between; /* Space between project name and logo */
-    align-items: center; /* Vertically center items */
-    max-width: 1200px; /* Limit content width */
-    margin: 0 auto; /* Center content horizontally */
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin:0 auto 0 auto;
 }
-
+ 
 .projName {
     font-size: 28px;
     font-weight: bold;
@@ -50,7 +50,6 @@ body {
 /* Dropdown Menu */
 .dropdown {
     position: relative;
-    display: inline-block;
 }
 
 .navbar-logo {
@@ -63,7 +62,29 @@ body {
 .dropdown-menu {
     display: block; /* Always in the document flow */
     position: absolute;
-    right: 0; /* Align dropdown to the right of the logo */
+
+/* ✅ position: absolute; (your desired behavior)
+What it does: Positions the dropdown relative to the nearest positioned ancestor (i.e., any parent with position: relative, absolute, or fixed).
+
+Why it works: It’s taken out of normal document flow, so it doesn’t stretch or push the navbar. You control exactly where it appears using top, right, left, etc.
+
+⚠️ position: relative;
+What it does: Keeps the dropdown in the document flow, but allows you to offset it visually using top, right, etc.
+
+Why it stretches the navbar: Since it's still part of the navbar’s flow, its height adds to or shifts the navbar when visible — which is what you're seeing.
+
+⚠️ position: fixed;
+What it does: Positions the dropdown relative to the viewport (entire screen), not to any element.
+
+Why it moves weirdly to the right: The right: 1px is relative to the browser window, not your navbar or logo, so it gets detached and feels misplaced.
+
+❌ position: static; (default)
+What it does: Means "no positioning". It ignores top, right, transform, etc.
+
+Why it's bad here: It behaves like a normal block element in the DOM, making your navbar expand massively to fit the dropdown — exactly what you’re seeing.*/
+
+
+    right: 1px; /* Align dropdown to the right of the logo */
     background-color: #ffffff; /* White background for the dropdown */
     border: 1px solid #ddd; /* Light border */
     border-radius: 8px; /* Rounded corners */
