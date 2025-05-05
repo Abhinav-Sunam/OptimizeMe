@@ -5,7 +5,7 @@
     padding: 0;
     margin: 0;
     font-family: "Poppins", sans-serif;
-    font-weight: 900;
+    font-weight: normal;
     font-style: normal;
     list-style: none;
 }
@@ -34,11 +34,11 @@ body {
 }
 
 .navbar-container {
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: space-between;
     max-width: 1200px;
-    margin:0 auto 0 auto;
+    margin: 0 auto;
 }
  
 .projName {
@@ -60,30 +60,8 @@ body {
 
 /* Dropdown Menu Styling */
 .dropdown-menu {
-    display: block; /* Always in the document flow */
+    display: block;
     position: absolute;
-
-/* ✅ position: absolute; (your desired behavior)
-What it does: Positions the dropdown relative to the nearest positioned ancestor (i.e., any parent with position: relative, absolute, or fixed).
-
-Why it works: It’s taken out of normal document flow, so it doesn’t stretch or push the navbar. You control exactly where it appears using top, right, left, etc.
-
-⚠️ position: relative;
-What it does: Keeps the dropdown in the document flow, but allows you to offset it visually using top, right, etc.
-
-Why it stretches the navbar: Since it's still part of the navbar’s flow, its height adds to or shifts the navbar when visible — which is what you're seeing.
-
-⚠️ position: fixed;
-What it does: Positions the dropdown relative to the viewport (entire screen), not to any element.
-
-Why it moves weirdly to the right: The right: 1px is relative to the browser window, not your navbar or logo, so it gets detached and feels misplaced.
-
-❌ position: static; (default)
-What it does: Means "no positioning". It ignores top, right, transform, etc.
-
-Why it's bad here: It behaves like a normal block element in the DOM, making your navbar expand massively to fit the dropdown — exactly what you’re seeing.*/
-
-
     right: 1px; /* Align dropdown to the right of the logo */
     background-color: #ffffff; /* White background for the dropdown */
     border: 1px solid #ddd; /* Light border */
@@ -91,10 +69,9 @@ Why it's bad here: It behaves like a normal block element in the DOM, making you
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     padding: 10px 0; /* Add some padding inside */
     z-index: 1000; /* Ensure it appears above other content */
-    min-width: 150px; /* Minimum width for the dropdown */
-    opacity: 0; /* Hidden by default */
+    min-width: 150px; /* Minimum width for the dropdown so it does not shrink */
+    opacity: 0; /* Hidden by default, will show only when we hover */
     transform: translateY(-20px); /* Position it above */
-    pointer-events: none; /* Prevent interaction when hidden */
     transition: all 0.3s ease; /* Smooth animation */
 }
 
@@ -104,7 +81,6 @@ Why it's bad here: It behaves like a normal block element in the DOM, making you
     color: #333333; /* Dark text color for readability */
     text-decoration: none; /* Remove underline */
     font-size: 16px;
-    transition: background 0.3s ease; /* Smooth hover effect */
 }
 
 .dropdown-menu a:hover {
@@ -125,13 +101,22 @@ main {
     text-align: center;
 }
 
-/* Box Around Eco Health */
-.eco-health-box {
+/* Stats Container */
+.stats-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+}
+
+/* Eco Health and Storage Boxes */
+.eco-health-box, .storage-box {
+    position: relative;
+    top: 50px;
     border: 2px solid white; /* White border */
     border-radius: 15px; /* Rounded corners */
     padding: 20px; /* Add spacing inside the box */
-    display: inline-block; /* Adjust box size to fit content */
-    margin: 20px auto; /* Center the box horizontally */
+    display: inline-block;
     background: #f6f7ff; /* Pastel background color */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
@@ -172,12 +157,54 @@ main {
     transition: stroke-dashoffset 0.5s ease; /* Smooth transition */
 }
 
+.progress-bar-used {
+    stroke-dasharray: 408;
+    stroke-dashoffset: 408;
+    stroke-width: 15px;
+    stroke: #ff6347; /* Red for used storage */
+    fill: none;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.progress-bar-available {
+    stroke-dasharray: 408;
+    stroke-dashoffset: 408;
+    stroke-width: 15px;
+    stroke: #4caf50; /* Green for available storage */
+    fill: none;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
 .progress-text {
+    font-family: "Montserrat", sans-serif;
+    font-weight:600 ;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 14px;
+    color: #000000; /* Slightly darker text for better readability */
+    text-align: center;
+}
+
+
+.progress-text-storage {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px; /* Reduced font size */
+    font-weight: 400; /* Lighter font weight */
     color: #333333; /* Slightly darker text for better readability */
+    text-align: center;
+    line-height: 1.2; /* Adjust line height for better spacing */
+}
+
+.storage-box .progress-text-storage p{
+    font-family: "Montserrat", sans-serif;
+    
+    font-weight: 600;
 }

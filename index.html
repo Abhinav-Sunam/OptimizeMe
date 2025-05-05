@@ -6,6 +6,11 @@
     <title>OptimizeMe</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="newlogo.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cal+Sans&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
 </head>
 
@@ -25,41 +30,41 @@
     </nav>
 
     <main>
-        <div class="eco-health-box">
-            <p class="heading">Eco Health</p>
-            <div class="progress-container">
-                <svg class="progress-circle" width="150" height="150">
-                    <circle class="progress-bg" cx="75" cy="75" r="65" stroke="#d3d3d3" stroke-width="15" fill="none" />
-                    <circle class="progress-bar" cx="75" cy="75" r="65" stroke="#4caf50" stroke-width="15" fill="none" 
+        <div class="stats-container">
+            <!-- Eco Health Box -->
+            <div class="eco-health-box">
+                <p class="heading">Eco Health</p>
+                <div class="progress-container">
+                    <svg class="progress-circle" width="150" height="150">
+                        <circle class="progress-bg" cx="75" cy="75" r="65" stroke="#d3d3d3" stroke-width="15" fill="none" />
+                        <circle class="progress-bar" cx="75" cy="75" r="65" stroke="#4caf50" stroke-width="15" fill="none"
                             stroke-dasharray="408" stroke-dashoffset="408" />
-                </svg>
-                <div class="progress-text">0%</div>
+                    </svg>
+                    <div class="progress-text">0%</div>
+                </div>
+            </div>
+
+            <!-- Storage Box -->
+            <div class="storage-box">
+                <p class="heading">Storage</p>
+                <div class="progress-container">
+                    <svg class="progress-circle" width="150" height="150">
+                        <circle class="progress-bg" cx="75" cy="75" r="65" stroke="#d3d3d3" stroke-width="15" fill="none" />
+                        <circle class="progress-bar-used" cx="75" cy="75" r="65" stroke="#ff6347" stroke-width="15" fill="none"
+                            stroke-dasharray="408" stroke-dashoffset="408" />
+                        <circle class="progress-bar-available" cx="75" cy="75" r="65" stroke="#4caf50" stroke-width="15" fill="none"
+                            stroke-dasharray="408" stroke-dashoffset="408" />
+                    </svg>
+                    <div class="progress-text-storage">
+                        <p>Total: 100GB</p>
+                        <p>Used: 40GB</p>
+                        <p>Available: 60GB</p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    <script>
-        // Backend health value (example, replace this with real data from your backend)
-        let healthX = 75; // This is the value you get from the backend (max: 100)
-
-        // Function to update the progress circle
-        function updateHealthCircle(health) {
-            const progressBar = document.querySelector('.progress-bar');
-            const progressText = document.querySelector('.progress-text');
-
-            // Calculate the stroke-dashoffset based on the health percentage
-            const maxStrokeLength = 408; // Circumference of the circle (2 * Math.PI * radius)
-            const dashOffset = maxStrokeLength - (health / 100) * maxStrokeLength;
-
-            // Update the circle and the text
-            progressBar.style.strokeDashoffset = dashOffset;
-            progressText.textContent = `${health}%`;
-        }
-
-        // Simulate receiving the health value from the backend
-        setTimeout(() => {
-            updateHealthCircle(healthX); // Update the circle with the backend value
-        }, 1000); // Simulate a delay of 1 second
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
