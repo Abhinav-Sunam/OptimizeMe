@@ -1,0 +1,4 @@
+healthX=90
+totalStorage=100
+usedStorage=70
+cpuName=Sexy

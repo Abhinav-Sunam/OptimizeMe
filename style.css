@@ -1,210 +1,117 @@
-/* Global Reset */
+/* reset + fonts */
 * {
-    text-decoration: none;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    font-weight: normal;
-    font-style: normal;
-    list-style: none;
+  box-sizing: border-box;
+  margin:0; padding:0;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  list-style: none;
 }
 
-/* Body Styles */
+/* body & gradient */
 body {
-    min-height: 100%;
-    background: linear-gradient(70deg, #74ebd5, #ACB6E5);
-    background-attachment: fixed;
-    color: white;
-    padding-bottom: 100px;
+  min-height:100vh;
+  background: linear-gradient(70deg,#74ebd5,#ACB6E5,#f9c5d1);
+  background-size:400% 400%;
+  animation:gradientMove 10s linear infinite;
+  color:white;
+  padding-bottom:100px;
+}
+@keyframes gradientMove {
+  0%{background-position:0% 0%}
+  25%{background-position:50% 0%}
+  50%{background-position:100% 50%}
+  75%{background-position:50% 100%}
+  100%{background-position:0% 0%}
 }
 
-/* Navigation Bar */
+/* navbar */
 .navbar {
-    background: #f6f7ff; /* Light pastel background */
-    color: #333333; /* Darker text color for contrast */
-    padding: 15px;
-    width: 100%;
-    position: fixed; /* Stick to the top */
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    border-radius: 0 0 15px 15px; /* Rounded bottom corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  position:fixed; top:0; left:0; width:100%;
+  background:#f6f7ff; color:#333;
+  padding:15px; border-radius:0 0 15px 15px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.1);
+  z-index:1000;
 }
-
 .navbar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
+  max-width:1200px; margin:0 auto;
+  display:flex; justify-content:space-between; align-items:center;
 }
- 
-.projName {
-    font-size: 28px;
-    font-weight: bold;
-    color: #333333; /* Darker text color */
-}
+.projName { font-size:28px; font-weight:bold; }
 
-/* Dropdown Menu */
-.dropdown {
-    position: relative;
-}
-
-.navbar-logo {
-    height: 50px;
-    width: auto;
-    cursor: pointer; /* Indicate interactivity */
-}
-
-/* Dropdown Menu Styling */
+/* dropdown */
+.dropdown { position:relative; }
+.navbar-logo { height:50px; cursor:pointer; }
 .dropdown-menu {
-    display: block;
-    position: absolute;
-    right: 1px; /* Align dropdown to the right of the logo */
-    background-color: #ffffff; /* White background for the dropdown */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    padding: 10px 0; /* Add some padding inside */
-    z-index: 1000; /* Ensure it appears above other content */
-    min-width: 150px; /* Minimum width for the dropdown so it does not shrink */
-    opacity: 0; /* Hidden by default, will show only when we hover */
-    transform: translateY(-20px); /* Position it above */
-    transition: all 0.3s ease; /* Smooth animation */
+  position:absolute; right:5px; top:100%;
+  background:#fff; border:1px solid #ddd; border-radius:8px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.1);
+  opacity:0; transform:translateY(-10px);
+  transition:all .3s; pointer-events:none; min-width:150px;
 }
-
-.dropdown-menu a {
-    display: block;
-    padding: 10px 20px;
-    color: #333333; /* Dark text color for readability */
-    text-decoration: none; /* Remove underline */
-    font-size: 16px;
-}
-
-.dropdown-menu a:hover {
-    background: #f6f7ff; /* Light pastel hover effect */
-}
-
-/* Show the dropdown with animation on hover */
 .dropdown:hover .dropdown-menu,
 .dropdown-menu:hover {
-    opacity: 1; /* Fully visible */
-    transform: translateY(0); /* Slide down */
-    pointer-events: auto; /* Allow interaction when visible */
+  opacity:1; transform:translateY(0); pointer-events:auto;
 }
-
-/* Main Section */
-main {
-    margin-top: 90px; /* Add space to account for the fixed navbar */
-    text-align: center;
+.dropdown-menu a {
+  display:block; padding:10px 20px;
+  color:#333; font-weight:700;
 }
+.dropdown-menu a:hover { background:#f6f7ff; }
 
-/* Stats Container */
+/* main & stats */
+main { margin-top:90px; text-align:center; }
 .stats-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 50px;
+  display:flex; justify-content:space-around;
+  align-items:center; margin-top:50px;
 }
 
-/* Eco Health and Storage Boxes */
+/* boxes */
 .eco-health-box, .storage-box {
-    position: relative;
-    top: 50px;
-    border: 2px solid white; /* White border */
-    border-radius: 15px; /* Rounded corners */
-    padding: 20px; /* Add spacing inside the box */
-    display: inline-block;
-    background: #f6f7ff; /* Pastel background color */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  background:#f6f7ff; color:#333;
+  border:2px solid #fff; border-radius:15px;
+  padding:20px; box-shadow:0 4px 8px rgba(0,0,0,0.2);
+  display:inline-block; position:relative; top:50px;
 }
+.heading { font-size:24px; font-weight:bold; margin-bottom:10px; }
 
-/* Heading */
-.heading {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333333; /* Slightly darker text for contrast */
-}
-
-/* Progress Circle Styles */
-.progress-container {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    margin: 20px auto;
-}
-
-.progress-circle {
-    transform: rotate(-90deg); /* Start the circle from the top */
-}
-
+/* circles */
+.progress-container { position:relative; width:150px; height:150px; margin:0 auto; }
+.progress-circle { transform:rotate(-90deg); }
+/* grey background ring */
 .progress-bg {
-    stroke-dasharray: 408; /* 2 * Math.PI * radius */
-    stroke-dashoffset: 0;
-    stroke-width: 15px;
-    stroke: #d3d3d3; /* Light gray background */
-    fill: none;
+  fill:none; stroke:#d3d3d3; stroke-width:15;
+  stroke-dasharray:408; stroke-dashoffset:0;
 }
-
-.progress-bar {
-    stroke-dasharray: 408; /* 2 * Math.PI * radius */
-    stroke-dashoffset: 408; /* Fully hidden initially */
-    stroke-width: 15px;
-    stroke: #4caf50; /* Solid green color */
-    fill: none;
-    transition: stroke-dashoffset 0.5s ease; /* Smooth transition */
-}
-
+/* colored slice */
+.progress-bar,
 .progress-bar-used {
-    stroke-dasharray: 408;
-    stroke-dashoffset: 408;
-    stroke-width: 15px;
-    stroke: #ff6347; /* Red for used storage */
-    fill: none;
-    transition: stroke-dashoffset 0.5s ease;
+  fill:none; stroke-width:15;
+  stroke-dasharray:408; stroke-dashoffset:408;
+  transition:stroke-dashoffset .5s ease, stroke .5s ease;
 }
+/* default colors (will be overridden for storage) */
+.progress-bar      { stroke:#4caf50; }
+.progress-bar-used { stroke:#4caf50; }
 
-.progress-bar-available {
-    stroke-dasharray: 408;
-    stroke-dashoffset: 408;
-    stroke-width: 15px;
-    stroke: #4caf50; /* Green for available storage */
-    fill: none;
-    transition: stroke-dashoffset 0.5s ease;
-}
-
+/* text overlays */
 .progress-text {
-    font-family: "Montserrat", sans-serif;
-    font-weight:600 ;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 14px;
-    color: #000000; /* Slightly darker text for better readability */
-    text-align: center;
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  font-size:19px; color:#000;
+  font-family:"Montserrat",sans-serif; font-weight:600;
 }
-
-
 .progress-text-storage {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 700;
-    font-style: normal;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 12px; /* Reduced font size */
-    font-weight: 400; /* Lighter font weight */
-    color: #333333; /* Slightly darker text for better readability */
-    text-align: center;
-    line-height: 1.2; /* Adjust line height for better spacing */
+  position:absolute; top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center; line-height:1.2;
+  color:#333; font-family:"Montserrat",sans-serif;
+}
+.progress-text-storage p 
+{
+   margin:2px 0; font-weight:600; 
+   font-size: 12px;
 }
 
-.storage-box .progress-text-storage p{
-    font-family: "Montserrat", sans-serif;
-    
-    font-weight: 600;
-}
+/* CPU */
+.CPU { position:relative; top:50px; color:#333; }
+.CPU .CPUname { font-weight:600; }

@@ -1,70 +1,73 @@
-// Backend health value (example, replace this with real data from your backend)
-let healthX = 75; // This is the value you get from the backend (max: 100)
+// globals
+let healthX        = 0;
+let totalStorage   = 0;
+let usedStorage    = 0;
+let availableStorage = 0;
 
-// Function to update the progress circle for Eco Health
-function updateHealthCircle(health) {
-    const progressBar = document.querySelector('.progress-bar');
-    const progressText = document.querySelector('.progress-text');
+// load data.txt
+fetch('data.txt')
+  .then(r => { if(!r.ok) throw new Error(r.status); return r.text(); })
+  .then(txt => {
+    txt.trim().split('\n').forEach(l => {
+      const [k, ...rest] = l.split('=');
+      if(!k||rest.length===0) return;
+      const v = rest.join('=').trim();
+      switch(k.trim()){
+        case 'healthX':
+          healthX = parseFloat(v) || 0; break;
+        case 'totalStorage':
+          totalStorage = parseFloat(v) || 0; break;
+        case 'usedStorage':
+          usedStorage = parseFloat(v) || 0; break;
+        case 'availableStorage':
+          availableStorage = parseFloat(v) || (totalStorage-usedStorage);
+          break;
+        case 'cpuName':
+          document.querySelector('.CPUname').textContent = v; break;
+      }
+    });
+    if(isNaN(availableStorage)) availableStorage = totalStorage - usedStorage;
+    updateHealthCircle(healthX);
+    updateStorageCircle(totalStorage, usedStorage);
+  })
+  .catch(e => {
+    console.error(e);
+    updateHealthCircle(0);
+    updateStorageCircle(0,0);
+    document.querySelector('.CPUname').textContent = 'Error';
+  });
 
-    // Calculate the stroke-dashoffset based on the health percentage
-    const maxStrokeLength = 408; // Circumference of the circle (2 * Math.PI * radius)
-    const dashOffset = maxStrokeLength - (health / 100) * maxStrokeLength;
-
-    // Update the circle and the text
-    progressBar.style.strokeDashoffset = dashOffset;
-    progressText.textContent = `${health}%`;
+// Eco Health
+function updateHealthCircle(h){
+  const circle = document.querySelector('.progress-bar');
+  const label  = document.querySelector('.progress-text');
+  if(!circle||!label) return;
+  h = Math.max(0,Math.min(100,h));
+  const offset = 408 * (1 - h/100);
+  circle.style.strokeDashoffset = offset;
+  label.textContent = `${Math.round(h)}%`;
 }
 
-// Simulate receiving the health value from the backend
-setTimeout(() => {
-    updateHealthCircle(healthX); // Update the circle with the backend value
-}, 1000); // Simulate a delay of 1 second
-
-// Backend storage values (example, replace these with real data from your backend)
-let totalStorage = 100; // Total storage in GB
-let usedStorage = 40; // Used storage in GB
-let availableStorage = totalStorage - usedStorage;
-
-// Function to calculate gradient color based on usage percentage
-function getGradientColor(percentage) {
-    if (percentage <= 50) {
-        return "#4caf50"; // Green
-    } else if (percentage <= 75) {
-        return "#4682b4"; // Blueish
-    } else {
-        return "#ff6347"; // Red
-    }
+// Storage with dynamic color
+function updateStorageCircle(total, used){
+  const slice = document.querySelector('.progress-bar-used');
+  const text  = document.querySelector('.progress-text-storage');
+  if(!slice||!text) return;
+  total = Math.max(0,total);
+  used  = Math.max(0,Math.min(total,used));
+  const pct  = total>0 ? used/total : 0;
+  // 1) animate the fill
+  slice.style.strokeDashoffset = 408 * (1 - pct);
+  // 2) choose color
+  let col = '#4caf50';        // green
+  if(pct > 0.75) col = '#ff6347'; // red
+  else if(pct > 0.50) col = '#4682b4'; // blue
+  slice.style.stroke = col;
+  // 3) update text
+  const avail = total - used;
+  text.innerHTML = `
+    <p>Total: ${total.toFixed(2)}GB</p>
+    <p>Used: ${used.toFixed(2)}GB</p>
+    <p>Available: ${avail.toFixed(2)}GB</p>
+  `;
 }
-
-// Function to update the storage circle
-function updateStorageCircle(total, used) {
-    const progressBarUsed = document.querySelector('.progress-bar-used');
-    const progressBarAvailable = document.querySelector('.progress-bar-available');
-    const progressTextStorage = document.querySelector('.progress-text-storage');
-
-    // Calculate the stroke-dashoffset for used and available storage
-    const maxStrokeLength = 408; // Circumference of the circle (2 * Math.PI * radius)
-    const dashOffsetUsed = maxStrokeLength - (used / total) * maxStrokeLength;
-
-    // Calculate used percentage
-    const usedPercentage = (used / total) * 100;
-
-    // Get the gradient color based on the percentage
-    const gradientColor = getGradientColor(usedPercentage);
-
-    // Update the circles and the text
-    progressBarUsed.style.strokeDashoffset = dashOffsetUsed;
-    progressBarUsed.style.stroke = gradientColor; // Apply the gradient color dynamically
-
-    // Update the text
-    progressTextStorage.innerHTML = `
-        <p>Total: ${total}GB</p>
-        <p>Used: ${used}GB</p>
-        <p>Available: ${total - used}GB</p>
-    `;
-}
-
-// Simulate receiving the storage values from the backend
-setTimeout(() => {
-    updateStorageCircle(totalStorage, usedStorage); // Update the circle with backend values
-}, 1000); // Simulate a delay of 1 second
