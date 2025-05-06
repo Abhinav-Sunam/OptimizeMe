@@ -24,14 +24,14 @@
 
   <main>
     <div class="stats-container">
-
+      <p class="STATUS">Your Stats</p>
       <!-- Eco Health -->
       <div class="eco-health-box">
         <p class="heading">Eco Health</p>
         <div class="progress-container">
           <svg width="150" height="150" class="progress-circle">
-            <circle class="progress-bg"       cx="75" cy="75" r="65" />
-            <circle class="progress-bar"      cx="75" cy="75" r="65" />
+            <circle class="progress-bg" cx="75" cy="75" r="65" />
+            <circle class="progress-bar" cx="75" cy="75" r="65" />
           </svg>
           <div class="progress-text">0%</div>
         </div>
@@ -42,7 +42,7 @@
         <p class="heading">Storage</p>
         <div class="progress-container">
           <svg width="150" height="150" class="progress-circle">
-            <circle class="progress-bg"       cx="75" cy="75" r="65" />
+            <circle class="progress-bg" cx="75" cy="75" r="65" />
             <circle class="progress-bar-used" cx="75" cy="75" r="65" />
           </svg>
           <div class="progress-text-storage">
@@ -54,14 +54,43 @@
       </div>
 
       <!-- CPU Info -->
-      <div class="CPU">
+      <div class="cpu-info-box">
         <p class="heading">CPU Info</p>
-        <div class="cpuInfo">
-          <p class="CPUname">XXXXXXX</p>
+        <div class="cpu-details">
+          <!-- CPU details will be dynamically inserted here -->
+        </div>
+      </div>
+
+      <!-- RAM Info -->
+      <div class="ram-info-box">
+        <p class="heading">RAM Info</p>
+        <div class="ram-details">
+          <!-- RAM details will be dynamically inserted here -->
         </div>
       </div>
 
     </div>
+
+    
+    <div class="ai-chatbox">
+      <div class="ai-header">
+        <img src="ai-icon.png" alt="AI Icon" class="ai-icon">
+        <p class="ai-title">AI Assistant</p>
+      </div>
+      <div class="ai-messages-container">
+        <div class="ai-messages">
+          <div class="ai-message">
+            <p>Welcome back! I’ve just completed a deep system analysis and have fine-tuned your device for peak performance.</p>
+          </div>
+        </div>
+      </div>
+      <div class="ai-input-container">
+        <span class="user-label">You:</span>
+        <input type="text" class="ai-input" placeholder="Type your message here..." />
+      </div>
+    </div>
+
+
   </main>
 
   <script src="script.js"></script>

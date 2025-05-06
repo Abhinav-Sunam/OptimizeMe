@@ -1,4 +1,8 @@
 healthX=90
 totalStorage=100
 usedStorage=70
-cpuName=Sexy
+cpuName=AMD Ryzen 5 7235HS                             
+cpuCore1=1 physical CPU package(s)
+cpuCore2=4 physical CPU core(s)
+cpuCore3=8 logical CPU(s)
+RAM=11GB
